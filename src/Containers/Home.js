@@ -1,15 +1,58 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { useState, useContext } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { backendUrlPrefix } from '../utils/constants';
+import { AuthContext } from '../utils/context';
 
-const Home = () => {
+const Home = (props) => {
+  const { state, dispatch } = useContext(AuthContext);
+  const [inputs, setInputs] = useState({
+    text: '',
+    password: '',
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setInputs({ ...inputs, [name]: value });
+  };
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    console.log(inputs);
+    try {
+      const url = `${backendUrlPrefix}/auth/login`;
+      dispatch({ type: 'LOADING' });
+      const {
+        data: { status, data },
+      } = await axios.post(url, inputs);
+      if (status === 'success') {
+        dispatch({ type: 'LOGIN_SUCCESS', payload: data });
+      }
+    } catch (error) {
+      console.log(error.response.data);
+      dispatch({ type: 'LOGIN_FAIL' });
+    }
+  };
+  const query = new URLSearchParams(props.location.search);
+  const next = query.get('next');
+  if (state.isAuth) {
+    return <Redirect to={next === null ? '/dashboard' : `/${next}`} />;
+  }
   return (
     <>
       <div className="App">
-        <form action="get" className="col-3 m-auto">
+        <form onSubmit={handleSubmit} className="col-3 m-auto">
           <h3>Sign In</h3>
           <div className="form-group">
             <label htmlFor="register-email">Username or email address</label>
-            <input type="email" id="register-email" className="form-control" />
+            <input
+              type="text"
+              id="register-email"
+              className="form-control"
+              placeholder="Username or email address"
+              name="text"
+              value={inputs.text}
+              onChange={handleInputChange}
+            />
           </div>
           <div className="form-group">
             <label htmlFor="register-password">Password</label>
@@ -17,11 +60,16 @@ const Home = () => {
               type="password"
               id="register-password"
               className="form-control"
+              placeholder="Password"
+              name="password"
+              value={inputs.password}
+              onChange={handleInputChange}
             />
           </div>
           <div className="form-group">
             <button type="submit" className="btn btn-block btn-success">
               Login
+              {state.loading ? '    Loading.....' : ''}
             </button>
           </div>
           <div className="form-group">
