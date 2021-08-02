@@ -3,8 +3,10 @@ import { useState, useContext } from 'react';
 import { Link, Redirect } from 'react-router-dom';
 import { backendUrlPrefix } from '../utils/constants';
 import { AuthContext } from '../utils/context';
+// import ErrorNotice from '../Components/misc/ErrorNotice';
 
 const Home = (props) => {
+  // const [error, setError] = useState();
   const { state, dispatch } = useContext(AuthContext);
   const [inputs, setInputs] = useState({
     text: '',
@@ -40,7 +42,7 @@ const Home = (props) => {
   return (
     <>
       <div className="App">
-        <form onSubmit={handleSubmit} className="col-3 m-auto">
+        <form onSubmit={handleSubmit} className="col-4 m-auto">
           <h3>Sign In</h3>
           <div className="form-group">
             <label htmlFor="register-email">Username or email address</label>
@@ -74,7 +76,8 @@ const Home = (props) => {
           </div>
           <div className="form-group">
             <button type="button" className="btn btn-block btn-dark">
-              New to KingsReg? <Link to="/admin-register">Register</Link>
+              New to KingsReg?
+              <Link to="/admin-register">Register</Link>
             </button>
           </div>
         </form>
