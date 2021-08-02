@@ -7,23 +7,23 @@ const Nav = () => {
   const { state, dispatch } = useContext(AuthContext);
   return (
     <div className="nav-container p-3">
-      <ul>
-        <li>
-          <NavLink exact to="/">
-            Home
-          </NavLink>
-        </li>
+      <div>
+        <NavLink exact to="/">
+          Home
+        </NavLink>
+      </div>
+      <div>
         {state.isAuth && (
-          <li>
+          <div>
             <button
-              className="btn btn-danger mt-3"
+              className="btn btn-danger "
               onClick={() => dispatch({ type: 'LOGOUT' })}
             >
               Logout
             </button>
-          </li>
+          </div>
         )}
-      </ul>
+      </div>
     </div>
   );
 };

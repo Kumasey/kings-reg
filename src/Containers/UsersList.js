@@ -4,10 +4,10 @@ import Nav from '../Components/Nav';
 const UsersList = () => {
   return (
     <>
-    <div>
-      <Nav />
+      <div>
+        <Nav />
       </div>
-      <div class="container">
+      {/* <div class="container">
     <div class="table-responsive">
         <div class="table-wrapper">
             <div class="table-title">
@@ -104,8 +104,8 @@ const UsersList = () => {
             </div>
         </div>
     </div>        
-</div>                
-      </>
+</div>                 */}
+    </>
   );
 };
 
