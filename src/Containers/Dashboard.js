@@ -73,14 +73,6 @@ const Dashboard = () => {
                     >
                       <GearIcon size={18} />
                     </a>
-                    <a
-                      href="#"
-                      className="delete"
-                      title="Delete"
-                      data-toggle="tooltip"
-                    >
-                      <XCircleFillIcon size={18} />
-                    </a>
                   </td>
                 </tr>
                 <tr>
