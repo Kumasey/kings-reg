@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useState, useContext } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { backendUrlPrefix } from '../utils/constants';
 import { AuthContext } from '../utils/context';
 // import ErrorNotice from '../Components/misc/ErrorNotice';
@@ -72,12 +72,6 @@ const Home = (props) => {
             <button type="submit" className="btn btn-block btn-success">
               Login
               {state.loading ? '    Loading.....' : ''}
-            </button>
-          </div>
-          <div className="form-group">
-            <button type="button" className="btn btn-block btn-dark">
-              New to KingsReg?
-              <Link to="/admin-register">Register</Link>
             </button>
           </div>
         </form>
