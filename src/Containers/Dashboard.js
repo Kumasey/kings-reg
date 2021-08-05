@@ -71,16 +71,20 @@ const Dashboard = () => {
                   <BellFillIcon size={24} />
                 </div>
                 <div className="col-xs-7">
-                  <span className="btn btn-primary" onClick={openModal}>
-                    <PencilIcon size={18} className="material-icons" />{' '}
-                    <span>Add New Member</span>
-                  </span>
                   <a
                     href={`${backendUrlPrefix}/users/csv`}
                     className="btn btn-primary"
                   >
                     <FileIcon size={16} className="material-icons" />{' '}
                     <span>Export User</span>
+                  </a>
+                  <span className="btn btn-primary" onClick={openModal}>
+                    <PencilIcon size={18} className="material-icons" />{' '}
+                    <span>Add New Member</span>
+                  </span>
+                  <a href="#" className="btn btn-primary">
+                    <FileIcon size={16} className="material-icons" />{' '}
+                    <span>Add Admin</span>
                   </a>
                 </div>
               </div>
