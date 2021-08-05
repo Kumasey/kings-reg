@@ -29,10 +29,6 @@ const App = () => {
     };
     getUser();
   }, [state.token]);
-<<<<<<< HEAD
-
-=======
->>>>>>> refs/remotes/origin/main
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       <BrowserRouter>
