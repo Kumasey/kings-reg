@@ -2,11 +2,7 @@ import axios from 'axios';
 import { useContext, useState } from 'react';
 import { backendUrlPrefix } from '../utils/constants';
 import { AuthContext } from '../utils/context';
-<<<<<<< HEAD
-// import { Modal, Button } from 'react-bootstrap';
-=======
 import config from '../utils/tokenConfig';
->>>>>>> refs/remotes/origin/main
 
 const RegForm = (props) => {
   const { state } = useContext(AuthContext);
@@ -92,15 +88,6 @@ const RegForm = (props) => {
   };
 
   return (
-<<<<<<< HEAD
-    <>
-      <Nav />
-
-      <h3>Register Member</h3>
-
-      <div className="reg-form">
-        <form className="col-6 m-auto" onSubmit={handleSubmit}>
-=======
     <div className="reg-form">
       <form className="col-12 m-auto" onSubmit={handleSubmit}>
         <div className="flex-group">
@@ -120,7 +107,6 @@ const RegForm = (props) => {
           </div>
         </div>
         <div className="flex-group">
->>>>>>> refs/remotes/origin/main
           <div className="form-group">
             <label htmlFor="register-first-name">Title</label>
             <select
