@@ -72,7 +72,7 @@ const Dashboard = () => {
                 </div>
                 <div className="col-xs-7">
                   <span className="btn btn-primary" onClick={openModal}>
-                    <DiffAddedIcon size={18} className="material-icons" />{' '}
+                    <PencilIcon size={18} className="material-icons" />{' '}
                     <span>Add New Member</span>
                   </span>
                   <a
@@ -149,7 +149,7 @@ const Dashboard = () => {
                           title="Settings"
                           data-toggle="tooltip"
                         >
-                          <GearIcon size={18} />
+                          <PersonAddIcon size={18} />
                         </a>
                         <a
                           href="#"
