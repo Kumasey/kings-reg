@@ -1,10 +1,12 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/anchor-is-valid */
+import React, { useEffect, useState, useContext } from 'react';
 import Nav from '../Components/Nav';
 import {
   FileIcon,
-  DiffAddedIcon,
+  BellFillIcon,
   XCircleFillIcon,
-  GearIcon,
+  PencilIcon,
+  PersonAddIcon,
 } from '@primer/octicons-react';
 
 const Dashboard = () => {
@@ -20,17 +22,24 @@ const Dashboard = () => {
               <div className="row">
                 <div className="col-xs-5">
                   <h2>
-                    User <b>Management</b>
+                    Membership <b>Management</b>
                   </h2>
+                </div>
+                <div className="alert-icon">
+                  <BellFillIcon size={24} />
                 </div>
                 <div className="col-xs-7">
                   <a href="/admin-register" className="btn btn-primary">
-                    <DiffAddedIcon size={18} className="material-icons" />{' '}
+                    <PersonAddIcon size={18} className="material-icons" />{' '}
+                    <span>Add Admin</span>
+                  </a>
+                  <a href="/admin-register" className="btn btn-primary">
+                    <PersonAddIcon size={18} className="material-icons" />{' '}
                     <span>Add New User</span>
                   </a>
                   <a href="#" className="btn btn-primary">
                     <FileIcon size={16} className="material-icons" />{' '}
-                    <span>Export to Excel</span>
+                    <span>Export User</span>
                   </a>
                 </div>
               </div>
@@ -67,11 +76,11 @@ const Dashboard = () => {
                   <td>
                     <a
                       href="#"
-                      className="settings mr-3"
-                      title="Settings"
+                      className="bi bi-pen mr-3"
+                      title="Edit"
                       data-toggle="tooltip"
                     >
-                      <GearIcon size={18} />
+                      <PencilIcon size={18} />
                     </a>
                     <a
                       href="#"
@@ -103,11 +112,11 @@ const Dashboard = () => {
                   <td>
                     <a
                       href="#"
-                      className="settings mr-3"
-                      title="Settings"
+                      className="bi bi-pen mr-3"
+                      title="Edit"
                       data-toggle="tooltip"
                     >
-                      <GearIcon size={18} />
+                      <PencilIcon size={18} />
                     </a>
                     <a
                       href="#"
@@ -139,11 +148,11 @@ const Dashboard = () => {
                   <td>
                     <a
                       href="#"
-                      className="settings mr-3"
-                      title="Settings"
+                      className="bi bi-pen mr-3"
+                      title="edit"
                       data-toggle="tooltip"
                     >
-                      <GearIcon size={18} />
+                      <PencilIcon size={18} />
                     </a>
                     <a
                       href="#"
@@ -175,11 +184,11 @@ const Dashboard = () => {
                   <td>
                     <a
                       href="#"
-                      className="settings mr-3"
-                      title="Settings"
+                      className="bi bi-pen mr-3"
+                      title="Edit"
                       data-toggle="tooltip"
                     >
-                      <GearIcon size={18} />
+                      <PencilIcon size={18} />
                     </a>
                     <a
                       href="#"
@@ -206,16 +215,196 @@ const Dashboard = () => {
                   <td>12/08/2017</td>
                   <td>Moderator</td>
                   <td>
-                    <span className="status text-warning">&bull;</span> Inactive
+                    <span className="status text-warning">&bull;</span> Absent
                   </td>
                   <td>
                     <a
                       href="#"
-                      className="settings mr-3"
-                      title="Settings"
+                      className="bi bi-pen mr-3"
+                      title="Edit"
                       data-toggle="tooltip"
                     >
-                      <GearIcon size={18} />
+                      <PencilIcon size={18} />
+                    </a>
+                    <a
+                      href="#"
+                      className="delete"
+                      title="Delete"
+                      data-toggle="tooltip"
+                    >
+                      <XCircleFillIcon size={18} />
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>6</td>
+                  <td>
+                    <a href="#">
+                      <img
+                        src="https://i.pinimg.com/236x/82/ab/35/82ab3533ee71daf256f23c1ccf20ad6f--avatar-maker.jpg"
+                        className="avatar"
+                        alt="Avatar"
+                      />{' '}
+                      Martin Sommer
+                    </a>
+                  </td>
+                  <td>12/08/2017</td>
+                  <td>Moderator</td>
+                  <td>
+                    <span className="status text-warning">&bull;</span> Absent
+                  </td>
+                  <td>
+                    <a
+                      href="#"
+                      className="bi bi-pen mr-3"
+                      title="Edit"
+                      data-toggle="tooltip"
+                    >
+                      <PencilIcon size={18} />
+                    </a>
+                    <a
+                      href="#"
+                      className="delete"
+                      title="Delete"
+                      data-toggle="tooltip"
+                    >
+                      <XCircleFillIcon size={18} />
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>7</td>
+                  <td>
+                    <a href="#">
+                      <img
+                        src="https://i.pinimg.com/236x/82/ab/35/82ab3533ee71daf256f23c1ccf20ad6f--avatar-maker.jpg"
+                        className="avatar"
+                        alt="Avatar"
+                      />{' '}
+                      Martin Sommer
+                    </a>
+                  </td>
+                  <td>12/08/2017</td>
+                  <td>Moderator</td>
+                  <td>
+                    <span className="status text-warning">&bull;</span> Absent
+                  </td>
+                  <td>
+                    <a
+                      href="#"
+                      className="bi bi-pen mr-3"
+                      title="Edit"
+                      data-toggle="tooltip"
+                    >
+                      <PencilIcon size={18} />
+                    </a>
+                    <a
+                      href="#"
+                      className="delete"
+                      title="Delete"
+                      data-toggle="tooltip"
+                    >
+                      <XCircleFillIcon size={18} />
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>8</td>
+                  <td>
+                    <a href="#">
+                      <img
+                        src="https://i.pinimg.com/236x/82/ab/35/82ab3533ee71daf256f23c1ccf20ad6f--avatar-maker.jpg"
+                        className="avatar"
+                        alt="Avatar"
+                      />{' '}
+                      Martin Sommer
+                    </a>
+                  </td>
+                  <td>12/08/2017</td>
+                  <td>Moderator</td>
+                  <td>
+                    <span className="status text-warning">&bull;</span> Absent
+                  </td>
+                  <td>
+                    <a
+                      href="#"
+                      className="bi bi-pen mr-3"
+                      title="Edit"
+                      data-toggle="tooltip"
+                    >
+                      <PencilIcon size={18} />
+                    </a>
+                    <a
+                      href="#"
+                      className="delete"
+                      title="Delete"
+                      data-toggle="tooltip"
+                    >
+                      <XCircleFillIcon size={18} />
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>9</td>
+                  <td>
+                    <a href="#">
+                      <img
+                        src="https://i.pinimg.com/236x/82/ab/35/82ab3533ee71daf256f23c1ccf20ad6f--avatar-maker.jpg"
+                        className="avatar"
+                        alt="Avatar"
+                      />{' '}
+                      Martin Sommer
+                    </a>
+                  </td>
+                  <td>12/08/2017</td>
+                  <td>Moderator</td>
+                  <td>
+                    <span className="status text-warning">&bull;</span> Absent
+                  </td>
+                  <td>
+                    <a
+                      href="#"
+                      className="bi bi-pen mr-3"
+                      title="Edit"
+                      data-toggle="tooltip"
+                    >
+                      <PencilIcon size={18} />
+                    </a>
+                    <a
+                      href="#"
+                      className="delete"
+                      title="Delete"
+                      data-toggle="tooltip"
+                    >
+                      <XCircleFillIcon size={18} />
+                    </a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>10</td>
+                  <td>
+                    <a href="#">
+                      <img
+                        src="https://i.pinimg.com/236x/82/ab/35/82ab3533ee71daf256f23c1ccf20ad6f--avatar-maker.jpg"
+                        className="avatar"
+                        alt="Avatar"
+                      />{' '}
+                      Martin Sommer
+                    </a>
+                  </td>
+                  <td>12/08/2017</td>
+                  <td>Moderator</td>
+                  <td>
+                    <span className="status text-warning">&bull;</span> Absent
+                  </td>
+                  <td>
+                    <a
+                      href="#"
+                      className="bi bi-pen mr-3"
+                      title="Edit"
+                      data-toggle="tooltip"
+                    >
+                      <PencilIcon size={18} />
                     </a>
                     <a
                       href="#"
@@ -231,13 +420,13 @@ const Dashboard = () => {
             </table>
             <div className="clearfix">
               <div className="hint-text">
-                Showing <b>5</b> out of <b>25</b> entries
+                Showing <b>10</b> out of <b>25</b> entries
               </div>
               <ul className="pagination">
                 <li className="page-item disabled">
                   <a href="#">Previous</a>
                 </li>
-                <li className="page-item">
+                <li className="page-item active">
                   <a href="#" className="page-link">
                     1
                   </a>
@@ -247,7 +436,7 @@ const Dashboard = () => {
                     2
                   </a>
                 </li>
-                <li className="page-item active">
+                <li className="page-item">
                   <a href="#" className="page-link">
                     3
                   </a>

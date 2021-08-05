@@ -7,12 +7,7 @@ const Nav = () => {
   const { state, dispatch } = useContext(AuthContext);
   return (
     <div className="nav-container p-3">
-      <div>
-        <NavLink exact to="/">
-          Home
-        </NavLink>
-      </div>
-      <div>
+      <div className="mr">
         {state.isAuth && (
           <div>
             <button

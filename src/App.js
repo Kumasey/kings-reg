@@ -30,7 +30,6 @@ const App = () => {
     getUser();
   }, [state.token]);
 
-  console.log(state);
   return (
     <AuthContext.Provider value={{ state, dispatch }}>
       <BrowserRouter>

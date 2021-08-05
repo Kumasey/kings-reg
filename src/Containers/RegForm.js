@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import Nav from '../Components/Nav';
 import { backendUrlPrefix } from '../utils/constants';
 import { AuthContext } from '../utils/context';
+// import { Modal, Button } from 'react-bootstrap';
 
 const RegForm = (props) => {
   const { state, dispatch } = useContext(AuthContext);
@@ -54,9 +55,11 @@ const RegForm = (props) => {
   return (
     <>
       <Nav />
+
+      <h3>Register Member</h3>
+
       <div className="reg-form">
         <form className="col-6 m-auto" onSubmit={handleSubmit}>
-          <h3>Register</h3>
           <div className="form-group">
             <label htmlFor="register-first-name">Title</label>
             <select
