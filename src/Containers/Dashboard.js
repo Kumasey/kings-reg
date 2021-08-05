@@ -8,8 +8,50 @@ import {
   PencilIcon,
   PersonAddIcon,
 } from '@primer/octicons-react';
+import { Pagination } from '../Components/Pagination';
+import axios from 'axios';
+import { backendUrlPrefix, formatDate } from '../utils/constants';
+
+import config from '../utils/tokenConfig';
+import { AuthContext } from '../utils/context';
+import RegForm from './RegForm';
 
 const Dashboard = () => {
+  const { state } = useContext(AuthContext);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize] = useState(5);
+  const [count, setCount] = useState(null);
+  const [users, setUsers] = useState([]);
+  const [showModal, setShowModal] = useState(false);
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+  useEffect(() => {
+    const getUsers = async () => {
+      try {
+        const url = `${backendUrlPrefix}/users?limit=${pageSize}&page=${currentPage}`;
+        const {
+          data: {
+            data: { users, count },
+          },
+        } = await axios.get(url, config(state.token));
+        setCount(count);
+        setUsers(users);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    getUsers();
+  }, [currentPage, pageSize, state.token]);
+
+  const openModal = () => setShowModal(true);
+  const closeModal = () => setShowModal(false);
+  const onSubmitSuccess = (data) => {
+    setShowModal(false);
+    setCurrentPage(1);
+    console.log(data);
+    setUsers([data.user, ...users]);
+  };
   return (
     <>
       <div>
@@ -29,6 +71,7 @@ const Dashboard = () => {
                   <BellFillIcon size={24} />
                 </div>
                 <div className="col-xs-7">
+<<<<<<< HEAD
                   <a href="/admin-register" className="btn btn-primary">
                     <PersonAddIcon size={18} className="material-icons" />{' '}
                     <span>Add Admin</span>
@@ -38,9 +81,33 @@ const Dashboard = () => {
                     <span>Add New User</span>
                   </a>
                   <a href="#" className="btn btn-primary">
+=======
+                  <span className="btn btn-primary" onClick={openModal}>
+                    <DiffAddedIcon size={18} className="material-icons" />{' '}
+                    <span>Add New Member</span>
+                  </span>
+                  <a
+                    href={`${backendUrlPrefix}/users/csv`}
+                    className="btn btn-primary"
+                  >
+>>>>>>> refs/remotes/origin/main
                     <FileIcon size={16} className="material-icons" />{' '}
                     <span>Export User</span>
                   </a>
+                </div>
+              </div>
+            </div>
+            <div className="new-modal" id={showModal ? 'show' : 'hide'}>
+              <div className="new-modal-content">
+                <div className="new-modal-container">
+                  <div className="modal-header flex">
+                    <h6 className="modal-title">Add New Member</h6>
+                    <button className="btn btn-danger" onClick={closeModal}>
+                      X
+                    </button>
+                  </div>
+
+                  <RegForm onSuccess={onSubmitSuccess} />
                 </div>
               </div>
             </div>
@@ -56,6 +123,7 @@ const Dashboard = () => {
                 </tr>
               </thead>
               <tbody>
+<<<<<<< HEAD
                 <tr>
                   <td>1</td>
                   <td>
@@ -416,10 +484,64 @@ const Dashboard = () => {
                     </a>
                   </td>
                 </tr>
+=======
+                {users.length > 0 &&
+                  users.map((user, index) => (
+                    <tr key={user._id}>
+                      <td>{index + 1}</td>
+                      <td>
+                        <img
+                          src={user.imageUrl}
+                          className="avatar"
+                          alt="Avatar"
+                        />
+                        {user.firstName} {user.lastName}
+                      </td>
+                      <td>{formatDate(user.createdAt)}</td>
+                      <td>
+                        {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
+                      </td>
+                      <td>
+                        {user.status === 'active' ? (
+                          <>
+                            <span className="status text-success">&bull;</span>{' '}
+                            {user.status.charAt(0).toUpperCase() +
+                              user.status.slice(1)}
+                          </>
+                        ) : (
+                          <>
+                            <span className="status text-warning">&bull;</span>{' '}
+                            {user.status.charAt(0).toUpperCase() +
+                              user.status.slice(1)}
+                          </>
+                        )}
+                      </td>
+                      <td>
+                        <a
+                          href="#"
+                          className="settings mr-3"
+                          title="Settings"
+                          data-toggle="tooltip"
+                        >
+                          <GearIcon size={18} />
+                        </a>
+                        <a
+                          href="#"
+                          className="delete"
+                          title="Delete"
+                          data-toggle="tooltip"
+                        >
+                          <XCircleFillIcon size={18} />
+                        </a>
+                      </td>
+                    </tr>
+                  ))}
+>>>>>>> refs/remotes/origin/main
               </tbody>
             </table>
             <div className="clearfix">
               <div className="hint-text">
+<<<<<<< HEAD
                 Showing <b>10</b> out of <b>25</b> entries
               </div>
               <ul className="pagination">
@@ -457,6 +579,17 @@ const Dashboard = () => {
                   </a>
                 </li>
               </ul>
+=======
+                Showing <b>{pageSize}</b> out of <b>{count}</b> entries
+              </div>
+
+              <Pagination
+                postsPerPage={pageSize}
+                totalPosts={count}
+                paginate={paginate}
+                currentPage={currentPage}
+              />
+>>>>>>> refs/remotes/origin/main
             </div>
           </div>
         </div>

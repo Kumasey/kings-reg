@@ -54,7 +54,11 @@
 } */
 
 .reg-form {
+<<<<<<< HEAD
   padding-top: 20px;
+=======
+  padding: 20px;
+>>>>>>> refs/remotes/origin/main
 }
 
 .reg-form h3 {
