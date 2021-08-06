@@ -1,5 +1,4 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../utils/context';
 
@@ -7,12 +6,7 @@ const Nav = () => {
   const { state, dispatch } = useContext(AuthContext);
   return (
     <div className="nav-container p-3">
-      <div>
-        <NavLink exact to="/">
-          Home
-        </NavLink>
-      </div>
-      <div>
+      <div className="mr">
         {state.isAuth && (
           <div>
             <button
