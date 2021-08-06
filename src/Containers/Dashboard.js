@@ -4,7 +4,7 @@ import Nav from '../Components/Nav';
 import {
   FileIcon,
   BellFillIcon,
-  XCircleFillIcon,
+  TrashIcon,
   PencilIcon,
   PersonAddIcon,
 } from '@primer/octicons-react';
@@ -79,11 +79,11 @@ const Dashboard = () => {
                     <span>Export User</span>
                   </a>
                   <span className="btn btn-primary" onClick={openModal}>
-                    <PencilIcon size={18} className="material-icons" />{' '}
+                    <PersonAddIcon size={18} className="material-icons" />{' '}
                     <span>Add New Member</span>
                   </span>
                   <a href="#" className="btn btn-primary">
-                    <FileIcon size={16} className="material-icons" />{' '}
+                    <PersonAddIcon size={20} className="material-icons" />{' '}
                     <span>Add Admin</span>
                   </a>
                 </div>
@@ -150,10 +150,10 @@ const Dashboard = () => {
                         <a
                           href="#"
                           className="settings mr-3"
-                          title="Settings"
+                          title="Edit Member's Details"
                           data-toggle="tooltip"
                         >
-                          <PersonAddIcon size={18} />
+                          <PencilIcon size={18} />
                         </a>
                         <a
                           href="#"
@@ -161,7 +161,7 @@ const Dashboard = () => {
                           title="Delete"
                           data-toggle="tooltip"
                         >
-                          <XCircleFillIcon size={18} />
+                          <TrashIcon size={18} />
                         </a>
                       </td>
                     </tr>
