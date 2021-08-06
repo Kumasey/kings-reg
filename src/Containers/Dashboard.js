@@ -15,6 +15,7 @@ import { backendUrlPrefix, formatDate } from '../utils/constants';
 import config from '../utils/tokenConfig';
 import { AuthContext } from '../utils/context';
 import RegForm from './RegForm';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const { state } = useContext(AuthContext);
@@ -68,7 +69,12 @@ const Dashboard = () => {
                   </h2>
                 </div>
                 <div className="alert-icon">
-                  <BellFillIcon size={24} />
+                  <Link to="#">
+                    <BellFillIcon size={24} />
+                    <span class="badge badge-danger">
+                      <b>010</b> Absentees
+                    </span>
+                  </Link>
                 </div>
                 <div className="col-xs-7">
                   <a
@@ -76,13 +82,13 @@ const Dashboard = () => {
                     className="btn btn-primary"
                   >
                     <FileIcon size={16} className="material-icons" />{' '}
-                    <span>Export User</span>
+                    <span>Export Member Details</span>
                   </a>
                   <span className="btn btn-primary" onClick={openModal}>
                     <PersonAddIcon size={18} className="material-icons" />{' '}
                     <span>Add New Member</span>
                   </span>
-                  <a href="#" className="btn btn-primary">
+                  <a href="#" className="btn btn-primary" onClick={openModal}>
                     <PersonAddIcon size={20} className="material-icons" />{' '}
                     <span>Add Admin</span>
                   </a>
