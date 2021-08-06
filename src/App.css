@@ -54,7 +54,7 @@
 } */
 
 .reg-form {
-  padding-top: 40px;
+  padding: 20px;
 }
 
 .reg-form h3 {
@@ -65,11 +65,11 @@
 /*Nav*/
 
 .nav-container {
-  background-color: #585d68;
+  background-color: #f4f4fc;
   max-height: 8vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: flex-end;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -82,7 +82,7 @@
 
 .nav-container > div > div {
   list-style-type: none;
-  margin: 0 2em;
+  margin: 0 4.6em;
 }
 
 .nav-container > div > a {
@@ -291,4 +291,9 @@ table.table .avatar {
   width: 20px;
   height: 25px;
   border-radius: 50%;
+}
+
+.alert-icon > a {
+  text-decoration: none;
+  color: white;
 }
