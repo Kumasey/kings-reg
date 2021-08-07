@@ -70,7 +70,11 @@ const Dashboard = () => {
                 <div className="alert-icon">
                   <Link to="#">
                     <BellFillIcon size={24} />
-                    <span class="badge badge-danger">
+                    <span
+                      class="badge badge-danger"
+                      data-toggle="tooltip"
+                      title=" Click to view Absentees detail"
+                    >
                       <b>010</b> Absentees
                     </span>
                   </Link>
