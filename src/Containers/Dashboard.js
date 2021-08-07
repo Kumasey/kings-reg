@@ -4,7 +4,6 @@ import Nav from '../Components/Nav';
 import {
   FileIcon,
   BellFillIcon,
-  TrashIcon,
   PencilIcon,
   PersonAddIcon,
 } from '@primer/octicons-react';
@@ -160,14 +159,6 @@ const Dashboard = () => {
                           data-toggle="tooltip"
                         >
                           <PencilIcon size={18} />
-                        </a>
-                        <a
-                          href="#"
-                          className="delete"
-                          title="Delete"
-                          data-toggle="tooltip"
-                        >
-                          <TrashIcon size={18} />
                         </a>
                       </td>
                     </tr>
