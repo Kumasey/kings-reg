@@ -3,9 +3,9 @@ import React, { useEffect, useState, useContext } from 'react';
 import Nav from '../Components/Nav';
 import {
   FileIcon,
-  DiffAddedIcon,
-  XCircleFillIcon,
-  GearIcon,
+  BellFillIcon,
+  PencilIcon,
+  PersonAddIcon,
 } from '@primer/octicons-react';
 import { Pagination } from '../Components/Pagination';
 import axios from 'axios';
@@ -14,6 +14,7 @@ import { backendUrlPrefix, formatDate } from '../utils/constants';
 import config from '../utils/tokenConfig';
 import { AuthContext } from '../utils/context';
 import RegForm from './RegForm';
+import { Link } from 'react-router-dom';
 
 const Dashboard = () => {
   const { state } = useContext(AuthContext);
@@ -63,20 +64,32 @@ const Dashboard = () => {
               <div className="row">
                 <div className="col-xs-5">
                   <h2>
-                    User <b>Management</b>
+                    Membership <b>Management</b>
                   </h2>
                 </div>
+                <div className="alert-icon">
+                  <Link to="#">
+                    <BellFillIcon size={24} />
+                    <span class="badge badge-danger">
+                      <b>010</b> Absentees
+                    </span>
+                  </Link>
+                </div>
                 <div className="col-xs-7">
-                  <span className="btn btn-primary" onClick={openModal}>
-                    <DiffAddedIcon size={18} className="material-icons" />{' '}
-                    <span>Add New Member</span>
-                  </span>
                   <a
                     href={`${backendUrlPrefix}/users/csv`}
                     className="btn btn-primary"
                   >
                     <FileIcon size={16} className="material-icons" />{' '}
-                    <span>Export to Excel</span>
+                    <span>Export Member Details</span>
+                  </a>
+                  <span className="btn btn-primary" onClick={openModal}>
+                    <PersonAddIcon size={18} className="material-icons" />{' '}
+                    <span>Add New Member</span>
+                  </span>
+                  <a href="#" className="btn btn-primary" onClick={openModal}>
+                    <PersonAddIcon size={20} className="material-icons" />{' '}
+                    <span>Add Admin</span>
                   </a>
                 </div>
               </div>
@@ -142,18 +155,10 @@ const Dashboard = () => {
                         <a
                           href="#"
                           className="settings mr-3"
-                          title="Settings"
+                          title="Edit Member's Details"
                           data-toggle="tooltip"
                         >
-                          <GearIcon size={18} />
-                        </a>
-                        <a
-                          href="#"
-                          className="delete"
-                          title="Delete"
-                          data-toggle="tooltip"
-                        >
-                          <XCircleFillIcon size={18} />
+                          <PencilIcon size={18} />
                         </a>
                       </td>
                     </tr>
