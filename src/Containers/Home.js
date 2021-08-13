@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 import { backendUrlPrefix } from '../utils/constants';
 import { AuthContext } from '../utils/context';
 // import ErrorNotice from '../Components/misc/ErrorNotice';
+import makeToast from '../Components/Toaster'
 
 const Home = (props) => {
   // const [error, setError] = useState();
@@ -31,6 +32,7 @@ const Home = (props) => {
       }
     } catch (error) {
       console.log(error.response.data);
+      makeToast('error', error?.response?.data.error);
       dispatch({ type: 'LOGIN_FAIL' });
     }
   };
