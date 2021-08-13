@@ -270,29 +270,6 @@ table.table .avatar {
   font-size: 13px;
 }
 
-/*ErrorNotice*/
-
-.error-notice {
-  font-size: 0.8rem;
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem 0;
-  border-radius: 8px;
-  padding: 0.5rem 0.4rem;
-  border: 1px solid #e07c7c;
-  background-color: #f8d6d6;
-}
-
-.error-notice button {
-  border: none;
-  background-color: #ddeeff;
-  color: white;
-  background-color: #df4343;
-  width: 20px;
-  height: 25px;
-  border-radius: 50%;
-}
-
 .alert-icon > a {
   text-decoration: none;
   color: white;
