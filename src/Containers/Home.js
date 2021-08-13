@@ -28,6 +28,7 @@ const Home = (props) => {
         data: { status, data },
       } = await axios.post(url, inputs);
       if (status === 'success') {
+        makeToast("success", "Login was successful")
         dispatch({ type: 'LOGIN_SUCCESS', payload: data });
       }
     } catch (error) {
