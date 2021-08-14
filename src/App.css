@@ -68,8 +68,8 @@
   background-color: #f4f4fc;
   max-height: 8vh;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -273,4 +273,23 @@ table.table .avatar {
 .alert-icon > a {
   text-decoration: none;
   color: white;
+}
+
+.inf-content {
+  border: 1px solid #dddddd;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+}
+
+.member-detail {
+  text-align: center;
+  font-size: x-large;
+  padding-bottom: 2%;
+}
+
+.member-detail > h4 {
+  color: green;
+  background-color: #ebf3fa;
 }

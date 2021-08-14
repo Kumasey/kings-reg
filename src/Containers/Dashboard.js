@@ -125,12 +125,14 @@ const Dashboard = () => {
                     <tr key={user._id}>
                       <td>{index + 1}</td>
                       <td>
-                        <img
-                          src={user.imageUrl}
-                          className="avatar"
-                          alt="Avatar"
-                        />
-                        {user.firstName} {user.lastName}
+                        <Link to={`/member/${user._id}`} key={user._id}>
+                          <img
+                            src={user.imageUrl}
+                            className="avatar"
+                            alt="Avatar"
+                          />
+                          {user.firstName} {user.lastName}
+                        </Link>
                       </td>
                       <td>{formatDate(user.createdAt)}</td>
                       <td>
