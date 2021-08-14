@@ -75,6 +75,7 @@ const Dashboard = () => {
                       data-toggle="tooltip"
                       title=" Click to view Absentees detail"
                     >
+                    <span className="badge badge-danger">
                       <b>010</b> Absentees
                     </span>
                   </Link>
@@ -129,12 +130,19 @@ const Dashboard = () => {
                     <tr key={user._id}>
                       <td>{index + 1}</td>
                       <td>
-                        <img
-                          src={user.imageUrl}
-                          className="avatar"
-                          alt="Avatar"
-                        />
-                        {user.firstName} {user.lastName}
+                        <Link
+                          to={`/member/${user._id}`}
+                          key={user._id}
+                          title="Member Details"
+                          data-toggle="tooltip"
+                        >
+                          <img
+                            src={user.imageUrl}
+                            className="avatar"
+                            alt="Avatar"
+                          />
+                          {user.firstName} {user.lastName}
+                        </Link>
                       </td>
                       <td>{formatDate(user.createdAt)}</td>
                       <td>

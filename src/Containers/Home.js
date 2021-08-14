@@ -3,10 +3,9 @@ import { useState, useContext } from 'react';
 import { Redirect } from 'react-router-dom';
 import { backendUrlPrefix } from '../utils/constants';
 import { AuthContext } from '../utils/context';
-// import ErrorNotice from '../Components/misc/ErrorNotice';
+import makeToast from '../Components/Toaster';
 
 const Home = (props) => {
-  // const [error, setError] = useState();
   const { state, dispatch } = useContext(AuthContext);
   const [inputs, setInputs] = useState({
     text: '',
@@ -27,10 +26,12 @@ const Home = (props) => {
         data: { status, data },
       } = await axios.post(url, inputs);
       if (status === 'success') {
+        makeToast('success', 'Login was successful');
         dispatch({ type: 'LOGIN_SUCCESS', payload: data });
       }
     } catch (error) {
       console.log(error.response.data);
+      makeToast('error', error?.response?.data.error);
       dispatch({ type: 'LOGIN_FAIL' });
     }
   };

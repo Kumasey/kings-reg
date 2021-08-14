@@ -9,6 +9,7 @@ import { backendUrlPrefix } from './utils/constants';
 import axios from 'axios';
 import config from './utils/tokenConfig';
 import PrivateRoute from './Components/PrivateRoute';
+import MemberDetails from './Containers/MemberDetails';
 
 const App = () => {
   const [state, dispatch] = useReducer(userReducer, initialState);
@@ -35,6 +36,7 @@ const App = () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/admin-register" component={RegForm} />
+          <Route path="/member/:id" component={MemberDetails} />
           <PrivateRoute
             path="/dashboard"
             component={Dashboard}

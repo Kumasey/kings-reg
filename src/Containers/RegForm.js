@@ -3,6 +3,7 @@ import { useContext, useState } from 'react';
 import { backendUrlPrefix } from '../utils/constants';
 import { AuthContext } from '../utils/context';
 import config from '../utils/tokenConfig';
+import makeToast from "../Components/Toaster"
 
 const RegForm = (props) => {
   const { state } = useContext(AuthContext);
@@ -59,10 +60,11 @@ const RegForm = (props) => {
     try {
       const url = `${backendUrlPrefix}/users/add`;
       const {
-        data: { data },
+        data: { data, status },
       } = await axios.post(url, formData, config(state.token));
 
       // console.log(data);
+      
       props.onSuccess(data);
       setLoading(false);
       setInputs({
@@ -81,8 +83,12 @@ const RegForm = (props) => {
         birthDay: '',
         isNewConvert: '',
       });
+      if(status === "success") {
+        makeToast("success", "successfully add user");
+      }
     } catch (error) {
       console.log(error.response.data);
+      makeToast('error', error?.response?.data.error);
       setLoading(false);
     }
   };

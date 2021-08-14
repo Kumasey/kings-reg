@@ -68,8 +68,8 @@
   background-color: #f4f4fc;
   max-height: 8vh;
   display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
+  flex-direction: column;
+  justify-content: space-between;
   font-size: calc(10px + 2vmin);
   color: white;
 }
@@ -270,30 +270,26 @@ table.table .avatar {
   font-size: 13px;
 }
 
-/*ErrorNotice*/
-
-.error-notice {
-  font-size: 0.8rem;
-  display: flex;
-  justify-content: space-between;
-  margin: 1rem 0;
-  border-radius: 8px;
-  padding: 0.5rem 0.4rem;
-  border: 1px solid #e07c7c;
-  background-color: #f8d6d6;
-}
-
-.error-notice button {
-  border: none;
-  background-color: #ddeeff;
-  color: white;
-  background-color: #df4343;
-  width: 20px;
-  height: 25px;
-  border-radius: 50%;
-}
-
 .alert-icon > a {
   text-decoration: none;
   color: white;
+}
+
+.inf-content {
+  border: 1px solid #dddddd;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  box-shadow: 7px 7px 7px rgba(0, 0, 0, 0.3);
+}
+
+.member-detail {
+  text-align: center;
+  font-size: x-large;
+  padding-bottom: 2%;
+}
+
+.member-detail > h4 {
+  color: green;
+  background-color: #ebf3fa;
 }
