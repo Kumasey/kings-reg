@@ -125,7 +125,12 @@ const Dashboard = () => {
                     <tr key={user._id}>
                       <td>{index + 1}</td>
                       <td>
-                        <Link to={`/member/${user._id}`} key={user._id}>
+                        <Link
+                          to={`/member/${user._id}`}
+                          key={user._id}
+                          title="Member Details"
+                          data-toggle="tooltip"
+                        >
                           <img
                             src={user.imageUrl}
                             className="avatar"
