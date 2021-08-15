@@ -43,7 +43,7 @@ const Home = (props) => {
   return (
     <>
       <div className="App">
-        <form onSubmit={handleSubmit} className="col-4 m-auto">
+        <form onSubmit={handleSubmit} className="col col-lg-4 col-sm-6  m-auto">
           <h3>Admin Sign In</h3>
           <div className="form-group">
             <label htmlFor="register-email">Username or email address</label>
