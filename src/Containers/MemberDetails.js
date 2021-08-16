@@ -7,7 +7,6 @@ const MemberDetails = (props) => {
   const confirmMember = () => {
     alert('are you sure you want to confirm this entry?');
   };
-  var cts = props.user?.createdAt,
     cdate = new Date(cts).toLocaleDateString();
   var mts = props.user?.createdAt,
     mDate = new Date(mts).toLocaleDateString();
