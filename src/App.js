@@ -24,7 +24,7 @@ const App = () => {
           dispatch({ type: 'GET_USER_SUCCESS', payload: data });
         }
       } catch (error) {
-        console.log(error.response.data);
+        console.log(error?.response?.data);
         dispatch({ type: 'GET_USER_FAIL' });
       }
     };

@@ -15,14 +15,16 @@ import config from '../utils/tokenConfig';
 import { AuthContext } from '../utils/context';
 import RegForm from './RegForm';
 import { Link } from 'react-router-dom';
+import MemberDetails from './MemberDetails';
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const { state } = useContext(AuthContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(5);
   const [count, setCount] = useState(null);
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
+  const [showNewModal, setShowNewModal] = useState(false);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   useEffect(() => {
@@ -46,6 +48,8 @@ const Dashboard = () => {
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
+  const openNewModal = () => setShowNewModal(true);
+  const closeNewModal = () => setShowNewModal(false);
   const onSubmitSuccess = (data) => {
     setShowModal(false);
     setCurrentPage(1);
@@ -108,6 +112,22 @@ const Dashboard = () => {
                 </div>
               </div>
             </div>
+            <div className="new-modal" id={showNewModal ? 'show' : 'hide'}>
+              <div className="new-modal-content">
+                <div className="new-modal-container">
+                  <div className="modal-header flex">
+                    <h6 className="modal-title">.</h6>
+                    <button
+                      className="btn-xs btn-danger"
+                      onClick={closeNewModal}
+                    >
+                      X
+                    </button>
+                  </div>
+                  <MemberDetails {...props.children} />
+                </div>
+              </div>
+            </div>
             <table className="table table-striped table-hover">
               <thead>
                 <tr>
@@ -125,19 +145,19 @@ const Dashboard = () => {
                     <tr key={user._id}>
                       <td>{index + 1}</td>
                       <td>
-                        <Link
-                          to={`/member/${user._id}`}
-                          key={user._id}
-                          title="Member Details"
-                          data-toggle="tooltip"
+                        <a
+                          onClick={openNewModal}
+                          href="#"
+                          title="member details"
                         >
                           <img
                             src={user.imageUrl}
                             className="avatar"
                             alt="Avatar"
+                            title="member image"
                           />
                           {user.firstName} {user.lastName}
-                        </Link>
+                        </a>
                       </td>
                       <td>{formatDate(user.createdAt)}</td>
                       <td>
