@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import { AuthContext } from '../utils/context';
 
 const Nav = () => {
@@ -7,9 +6,6 @@ const Nav = () => {
   return (
     <div className="nav-container p-3">
       <div className="mr">
-        <Link to={'/dashboard'} className="btn btn-primary">
-          Back
-        </Link>
         {state.isAuth && (
           <div>
             <button
