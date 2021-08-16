@@ -18,7 +18,6 @@ const Home = (props) => {
   };
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(inputs);
     try {
       const url = `${backendUrlPrefix}/auth/login`;
       dispatch({ type: 'LOADING' });
@@ -30,7 +29,6 @@ const Home = (props) => {
         dispatch({ type: 'LOGIN_SUCCESS', payload: data });
       }
     } catch (error) {
-      console.log(error.response.data);
       makeToast('error', error?.response?.data.error);
       dispatch({ type: 'LOGIN_FAIL' });
     }

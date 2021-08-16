@@ -1,51 +1,18 @@
-import axios from 'axios';
-import Nav from '../Components/Nav';
-import { backendUrlPrefix } from '../utils/constants';
-
-import config from '../utils/tokenConfig';
-import { AuthContext } from '../utils/context';
-
-import React, { useState, useEffect, useContext } from 'react';
+import React from 'react';
+import { formatDate } from '../utils/constants';
 
 const MemberDetails = (props) => {
-  const { state } = useContext(AuthContext);
-  const [users, setUsers] = useState({});
-  const id = props.id;
-  console.log('++++++>', id);
-  console.log('+>', props);
-  useEffect(() => {
-    const getMember = async () => {
-      try {
-        const url = `${backendUrlPrefix}/users/${id}`;
-        const res = await axios.get(url, config(state.token));
-        console.log('--------->', res.data.data);
-        setUsers(res.data.data);
-        console.log('--+-->', users);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getMember();
-  }, [id, state.token]);
   const deletConfirm = () => {
     alert('are you sure you want to delete member forever?');
   };
   const confirmMember = () => {
     alert('are you sure you want to confirm this entry?');
   };
-  var cts = users.createdAt,
-    cdate = new Date(cts).toLocaleDateString();
-  var mts = users.createdAt,
-    mDate = new Date(mts).toLocaleDateString();
-  var bts = users.createdAt,
-    bDate = new Date(bts).toLocaleDateString();
   return (
     <>
-      <Nav />
       <div className="member-detail">
-        Member datails <br />{' '}
         <h4>
-          {users.firstName} {users.lastName}
+          {props.user?.firstName} {props.user?.lastName}
         </h4>
       </div>
       <div className="container bootstrap snippets bootdey">
@@ -56,7 +23,7 @@ const MemberDetails = (props) => {
                 alt=""
                 title="member image"
                 className="img-circle img-thumbnail isTooltip"
-                src={users.imageUrl}
+                src={props.user?.imageUrl}
                 data-original-title="Usuario"
               />
             </div>
@@ -71,39 +38,39 @@ const MemberDetails = (props) => {
                           Identificacion
                         </strong>
                       </td>
-                      <td className="text-primary">{users._id}</td>
+                      <td className="text-primary">{props.user?._id}</td>
                     </tr>
                     <tr>
                       <td>
                         <strong>
-                          <span className="glyphicon glyphicon-user  text-primary"></span>
+                          <span className="glyphicon glyphicon-user?  text-primary"></span>
                           Title:
                         </strong>
                       </td>
-                      <td className="text-primary">{users.title}</td>
+                      <td className="text-primary">{props.user?.title}</td>
                       <td>
                         <strong>
                           <span className="glyphicon glyphicon-cloud text-primary"></span>
                           Gender:
                         </strong>
                       </td>
-                      <td className="text-primary">{users.gender}</td>
+                      <td className="text-primary">{props.user?.gender}</td>
                     </tr>
                     <tr>
                       <td>
                         <strong>
-                          <span className="glyphicon glyphicon-user  text-primary"></span>
+                          <span className="glyphicon glyphicon-user?  text-primary"></span>
                           Firstname:
                         </strong>
                       </td>
-                      <td className="text-primary">{users.firstName}</td>
+                      <td className="text-primary">{props.user?.firstName}</td>
                       <td>
                         <strong>
                           <span className="glyphicon glyphicon-cloud text-primary"></span>
                           Lastname:
                         </strong>
                       </td>
-                      <td className="text-primary">{users.lastName}</td>
+                      <td className="text-primary">{props.user?.lastName}</td>
                     </tr>
                     <tr>
                       <td>
@@ -112,14 +79,14 @@ const MemberDetails = (props) => {
                           Username:
                         </strong>
                       </td>
-                      <td className="text-primary">{users.username}</td>
+                      <td className="text-primary">{props.user?.username}</td>
                       <td>
                         <strong>
                           <span className="glyphicon glyphicon-eye-open text-primary"></span>
                           Role:
                         </strong>
                       </td>
-                      <td className="text-primary">{users.role}</td>
+                      <td className="text-primary">{props.user?.role}</td>
                     </tr>
                     <tr>
                       <td>
@@ -128,14 +95,16 @@ const MemberDetails = (props) => {
                           Email:
                         </strong>
                       </td>
-                      <td className="text-primary">{users.email}</td>
+                      <td className="text-primary">{props.user?.email}</td>
                       <td>
                         <strong>
                           <span className="glyphicon glyphicon-eye-open text-primary"></span>
                           Birthday:
                         </strong>
                       </td>
-                      <td className="text-primary">{bDate}</td>
+                      <td className="text-primary">
+                        {formatDate(props.user?.birthDay)}
+                      </td>
                     </tr>
                     <tr>
                       <td>
@@ -144,7 +113,7 @@ const MemberDetails = (props) => {
                           Address:
                         </strong>
                       </td>
-                      <td className="text-primary">{users.address}</td>
+                      <td className="text-primary">{props.user?.address}</td>
                     </tr>
                     <tr>
                       <td>
@@ -153,14 +122,14 @@ const MemberDetails = (props) => {
                           State:
                         </strong>
                       </td>
-                      <td className="text-primary">{users.state}</td>
+                      <td className="text-primary">{props.user?.state}</td>
                       <td>
                         <strong>
                           <span className="glyphicon glyphicon-envelope text-primary"></span>
                           City:
                         </strong>
                       </td>
-                      <td className="text-primary">{users.city}</td>
+                      <td className="text-primary">{props.user?.city}</td>
                     </tr>
                     <tr>
                       <td>
@@ -169,7 +138,7 @@ const MemberDetails = (props) => {
                           Phone:
                         </strong>
                       </td>
-                      <td className="text-primary">{users.phone}</td>
+                      <td className="text-primary">{props.user?.phone}</td>
                     </tr>
                     <tr>
                       <td>
@@ -178,14 +147,18 @@ const MemberDetails = (props) => {
                           created:
                         </strong>
                       </td>
-                      <td className="text-primary">{cdate}</td>
+                      <td className="text-primary">
+                        {formatDate(props.user?.createdAt)}
+                      </td>
                       <td>
                         <strong>
                           <span className="glyphicon glyphicon-calendar text-primary"></span>
                           Modified:
                         </strong>
                       </td>
-                      <td className="text-primary">{mDate}</td>
+                      <td className="text-primary">
+                        {formatDate(props.user?.updatedAt)}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
