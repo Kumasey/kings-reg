@@ -17,7 +17,7 @@ import RegForm from './RegForm';
 import { Link } from 'react-router-dom';
 import MemberDetails from './MemberDetails';
 
-const Dashboard = (props) => {
+const Dashboard = () => {
   const { state } = useContext(AuthContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(5);
@@ -26,6 +26,7 @@ const Dashboard = (props) => {
   const [showModal, setShowModal] = useState(false);
   const [showNewModal, setShowNewModal] = useState(false);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const [activeUser, setActiveUser] = useState({});
 
   useEffect(() => {
     const getUsers = async () => {
@@ -48,12 +49,14 @@ const Dashboard = (props) => {
 
   const openModal = () => setShowModal(true);
   const closeModal = () => setShowModal(false);
-  const openNewModal = () => setShowNewModal(true);
+  const openNewModal = (user) => {
+    setShowNewModal(true);
+    setActiveUser(user);
+  };
   const closeNewModal = () => setShowNewModal(false);
   const onSubmitSuccess = (data) => {
     setShowModal(false);
     setCurrentPage(1);
-    console.log(data);
     setUsers([data.user, ...users]);
   };
   return (
@@ -61,7 +64,7 @@ const Dashboard = (props) => {
       <div>
         <Nav />
       </div>
-      <div className="container">
+      <div className="container sm-col-4">
         <div className="table-responsive">
           <div className="table-wrapper">
             <div className="table-title">
@@ -114,9 +117,9 @@ const Dashboard = (props) => {
             </div>
             <div className="new-modal" id={showNewModal ? 'show' : 'hide'}>
               <div className="new-modal-content">
-                <div className="new-modal-container">
+                <div className="new-modal-container col-12 sm-col-6">
                   <div className="modal-header flex">
-                    <h6 className="modal-title">.</h6>
+                    <h6>Memeber Details</h6>
                     <button
                       className="btn-xs btn-danger"
                       onClick={closeNewModal}
@@ -124,7 +127,7 @@ const Dashboard = (props) => {
                       X
                     </button>
                   </div>
-                  <MemberDetails {...props.children} />
+                  <MemberDetails user={activeUser} />
                 </div>
               </div>
             </div>
@@ -146,7 +149,7 @@ const Dashboard = (props) => {
                       <td>{index + 1}</td>
                       <td>
                         <a
-                          onClick={openNewModal}
+                          onClick={(e) => openNewModal(user)}
                           href="#"
                           title="member details"
                         >
