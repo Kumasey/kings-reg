@@ -293,3 +293,8 @@ table.table .avatar {
   color: green;
   background-color: #ebf3fa;
 }
+
+.detail-button {
+  display: flex;
+  justify-content: space-between;
+}

@@ -10,7 +10,7 @@ import React, { useState, useEffect, useContext } from 'react';
 const MemberDetails = (props) => {
   const { state } = useContext(AuthContext);
   const [users, setUsers] = useState({});
-  const id = props.match.params.id;
+  const id = props.id;
   console.log('++++++>', id);
   console.log('+>', props);
   useEffect(() => {
@@ -29,6 +29,9 @@ const MemberDetails = (props) => {
   }, [id, state.token]);
   const deletConfirm = () => {
     alert('are you sure you want to delete member forever?');
+  };
+  const confirmMember = () => {
+    alert('are you sure you want to confirm this entry?');
   };
   var cts = users.createdAt,
     cdate = new Date(cts).toLocaleDateString();
@@ -51,7 +54,7 @@ const MemberDetails = (props) => {
             <div className="col-md-4">
               <img
                 alt=""
-                title=""
+                title="member image"
                 className="img-circle img-thumbnail isTooltip"
                 src={users.imageUrl}
                 data-original-title="Usuario"
@@ -186,13 +189,22 @@ const MemberDetails = (props) => {
                     </tr>
                   </tbody>
                 </table>
-                <button
-                  className="btn btn-danger"
-                  type="button"
-                  onClick={deletConfirm}
-                >
-                  DELETE MEMBER
-                </button>
+                <div className="detail-button">
+                  <button
+                    className="btn btn-danger"
+                    type="button"
+                    onClick={deletConfirm}
+                  >
+                    DELETE MEMBER
+                  </button>
+                  <button
+                    className="btn btn-success"
+                    type="button"
+                    onClick={confirmMember}
+                  >
+                    VERIFY
+                  </button>
+                </div>
               </div>
             </div>
           </div>
