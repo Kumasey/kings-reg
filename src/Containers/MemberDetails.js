@@ -1,4 +1,5 @@
 import React from 'react';
+import { formatDate } from '../utils/constants';
 
 const MemberDetails = (props) => {
   const deletConfirm = () => {
@@ -7,12 +8,6 @@ const MemberDetails = (props) => {
   const confirmMember = () => {
     alert('are you sure you want to confirm this entry?');
   };
-  var cts = props.user?.createdAt,
-    cdate = new Date(cts).toLocaleDateString();
-  var mts = props.user?.createdAt,
-    mDate = new Date(mts).toLocaleDateString();
-  var bts = props.user?.createdAt,
-    bDate = new Date(bts).toLocaleDateString();
   return (
     <>
       <div className="member-detail">
@@ -107,7 +102,9 @@ const MemberDetails = (props) => {
                           Birthday:
                         </strong>
                       </td>
-                      <td className="text-primary">{bDate}</td>
+                      <td className="text-primary">
+                        {formatDate(props.user?.birthDay)}
+                      </td>
                     </tr>
                     <tr>
                       <td>
@@ -150,14 +147,18 @@ const MemberDetails = (props) => {
                           created:
                         </strong>
                       </td>
-                      <td className="text-primary">{cdate}</td>
+                      <td className="text-primary">
+                        {formatDate(props.user?.createdAt)}
+                      </td>
                       <td>
                         <strong>
                           <span className="glyphicon glyphicon-calendar text-primary"></span>
                           Modified:
                         </strong>
                       </td>
-                      <td className="text-primary">{mDate}</td>
+                      <td className="text-primary">
+                        {formatDate(props.user?.updatedAt)}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
