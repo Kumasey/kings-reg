@@ -35,11 +35,19 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/admin-register" component={RegForm} />
-          <Route path="/member/:id" component={MemberDetails} />
           <PrivateRoute
             path="/dashboard"
             component={Dashboard}
+            next="dashboard"
+          />
+          <PrivateRoute
+            path="/admin-register"
+            component={RegForm}
+            next="dashboard"
+          />
+          <PrivateRoute
+            path="/member/:id"
+            component={MemberDetails}
             next="dashboard"
           />
         </Switch>
