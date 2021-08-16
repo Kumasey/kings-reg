@@ -1,7 +1,6 @@
 import './App.css';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './Containers/Home';
-import RegForm from './Containers/RegForm';
 import Dashboard from './Containers/Dashboard';
 import { AuthContext, initialState, userReducer } from './utils/context';
 import { useEffect, useReducer } from 'react';
@@ -9,7 +8,7 @@ import { backendUrlPrefix } from './utils/constants';
 import axios from 'axios';
 import config from './utils/tokenConfig';
 import PrivateRoute from './Components/PrivateRoute';
-import MemberDetails from './Containers/MemberDetails';
+import Page404 from './Containers/Page404';
 
 const App = () => {
   const [state, dispatch] = useReducer(userReducer, initialState);
@@ -40,16 +39,7 @@ const App = () => {
             component={Dashboard}
             next="dashboard"
           />
-          <PrivateRoute
-            path="/admin-register"
-            component={RegForm}
-            next="dashboard"
-          />
-          <PrivateRoute
-            path="/member/:id"
-            component={MemberDetails}
-            next="dashboard"
-          />
+          <Route component={Page404} />
         </Switch>
       </BrowserRouter>
     </AuthContext.Provider>
