@@ -17,7 +17,7 @@ import RegForm from './RegForm';
 import { Link } from 'react-router-dom';
 import MemberDetails from './MemberDetails';
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const { state } = useContext(AuthContext);
   const [currentPage, setCurrentPage] = useState(1);
   const [pageSize] = useState(5);
