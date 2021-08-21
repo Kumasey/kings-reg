@@ -3,7 +3,7 @@ import { useContext, useState } from 'react';
 import { backendUrlPrefix } from '../utils/constants';
 import { AuthContext } from '../utils/context';
 import config from '../utils/tokenConfig';
-import makeToast from "../Components/Toaster"
+import makeToast from '../Components/Toaster';
 
 const RegForm = (props) => {
   const { state } = useContext(AuthContext);
@@ -18,6 +18,7 @@ const RegForm = (props) => {
     phone: '',
     gender: '',
     birthDay: '',
+    chcurch: '',
     address: '',
     city: '',
     state: '',
@@ -55,6 +56,7 @@ const RegForm = (props) => {
     formData.append('state', inputs.state);
     formData.append('zip', inputs.zip);
     formData.append('birthDay', inputs.birthDay);
+    formData.append('church', inputs.church);
     formData.append('gender', inputs.gender);
     formData.append('isNewConvert', inputs.isNewConvert);
     try {
@@ -64,7 +66,7 @@ const RegForm = (props) => {
       } = await axios.post(url, formData, config(state.token));
 
       // console.log(data);
-      
+
       props.onSuccess(data);
       setLoading(false);
       setInputs({
@@ -81,10 +83,11 @@ const RegForm = (props) => {
         image: null,
         imageUrl: 'https://via.placeholder.com/200',
         birthDay: '',
+        church: '',
         isNewConvert: '',
       });
-      if(status === "success") {
-        makeToast("success", "successfully add user");
+      if (status === 'success') {
+        makeToast('success', 'successfully add user');
       }
     } catch (error) {
       console.log(error.response.data);
@@ -191,6 +194,18 @@ const RegForm = (props) => {
               value={inputs.email}
               onChange={handleChange}
             />
+          </div>
+          <div className="form-group">
+            <label htmlFor="register-church">Church</label>
+            <select
+              className="form-control"
+              name="church"
+              onChange={handleChange}
+              value={inputs.church}
+            >
+              <option>Select Church</option>
+              <option value="church">CE Lagos Virtual Zone</option>
+            </select>
           </div>
         </div>
         <div className="flex-group">
