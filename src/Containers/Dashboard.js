@@ -26,14 +26,14 @@ const Dashboard = () => {
   const [showModal, setShowModal] = useState(false);
   const [showNewModal, setShowNewModal] = useState(false);
   const paginate = (e, pageNumber) => {
-    const numberOfPages = Math.ceil(count / pageSize);
-    if (currentPage <= 1) {
-      e.preventDefault();
-    } else if (currentPage >= numberOfPages) {
-      e.preventDefault();
-    } else {
-      setCurrentPage(pageNumber);
-    }
+    // const numberOfPages = Math.ceil(count / pageSize);
+    // if (currentPage <= 1) {
+    //   e.preventDefault();
+    // } else if (currentPage >= numberOfPages) {
+    //   e.preventDefault();
+    // } else {
+    setCurrentPage(pageNumber);
+    // }
   };
   const [activeUser, setActiveUser] = useState({});
 
@@ -209,7 +209,7 @@ const Dashboard = () => {
             </table>
             <div className="clearfix">
               <div className="hint-text">
-                Showing <b>{pageSize}</b> out of <b>{count}</b> entries
+                Showing <b>{users?.length}</b> out of <b>{count}</b> entries
               </div>
 
               <Pagination
