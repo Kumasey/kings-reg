@@ -11,11 +11,12 @@ export const Pagination = ({
     pageNumbers.push(i);
   }
   const numberOfPages = pageNumbers.length;
+  console.log("sssss", totalPosts)
   return (
     <nav>
       <ul className="pagination">
         <li className={`page-item ${currentPage <= 1 && 'disabled'}`}>
-          <span className="page-link" onClick={() => paginate(currentPage - 1)}>
+          <span className="page-link" onClick={(e) => paginate(e, currentPage - 1)}>
             Previous
           </span>
         </li>
@@ -23,7 +24,7 @@ export const Pagination = ({
         {pageNumbers.map((number) => (
           <li key={number} className="page-item">
             <span
-              onClick={() => paginate(number)}
+              onClick={(e) => paginate(e, number)}
               className={`page-link ${currentPage === number ? 'active' : ''}`}
             >
               {number}
@@ -34,7 +35,7 @@ export const Pagination = ({
           className={`page-item ${
             currentPage >= numberOfPages ? 'disabled' : ''
           }`}
-          onClick={() => paginate(currentPage + 1)}
+          onClick={(e) => paginate(e, currentPage + 1)}
         >
           <span className="page-link">Next</span>
         </li>

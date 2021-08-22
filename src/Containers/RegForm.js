@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useContext, useState } from 'react';
+import { useContext, useState, useEffect } from 'react';
 import { backendUrlPrefix } from '../utils/constants';
 import { AuthContext } from '../utils/context';
 import config from '../utils/tokenConfig';
@@ -9,6 +9,7 @@ const RegForm = (props) => {
   const { state } = useContext(AuthContext);
 
   const [loading, setLoading] = useState(false);
+  const [churches, setChurches] = useState([]);
   const [inputs, setInputs] = useState({
     firstName: '',
     lastName: '',
@@ -18,7 +19,7 @@ const RegForm = (props) => {
     phone: '',
     gender: '',
     birthDay: '',
-    chcurch: '',
+    church: '',
     address: '',
     city: '',
     state: '',
@@ -30,6 +31,7 @@ const RegForm = (props) => {
 
   const handleImageChange = (event) => {
     setInputs({
+      ...inputs,
       image: event.target.files[0],
       imageUrl: URL.createObjectURL(event.target.files[0]),
     });
@@ -95,6 +97,16 @@ const RegForm = (props) => {
       setLoading(false);
     }
   };
+  useEffect(() => {
+    const url = `${backendUrlPrefix}/churches`;
+    axios
+      .get(url)
+      .then(({ data: { data } }) => {
+        console.log(data.churches);
+        setChurches(data.churches);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <div className="reg-form">
@@ -136,7 +148,7 @@ const RegForm = (props) => {
             </select>
           </div>
           <div className="form-group">
-            <label htmlFor="first-name">Username</label>
+            <label htmlFor="username">Username</label>
             <input
               autoComplete="username"
               type="text"
@@ -204,7 +216,12 @@ const RegForm = (props) => {
               value={inputs.church}
             >
               <option>Select Church</option>
-              <option value="church">CE Lagos Virtual Zone</option>
+              {/* <option value="church">CE Lagos Virtual Zone</option> */}
+              {churches?.map((church) => (
+                <option key={church._id} value={church._id}>
+                  {church.churchName}
+                </option>
+              ))}
             </select>
           </div>
         </div>

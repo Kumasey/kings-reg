@@ -209,7 +209,9 @@ table.table .avatar {
   border-radius: 50%;
   vertical-align: middle;
   margin-right: 10px;
-  max-width: 10%;
+  /* max-width: 10%; */
+  width: 40px;
+  height: 40px;
 }
 
 .status {
@@ -259,6 +261,12 @@ table.table .avatar {
 }
 .pagination li.disabled i {
   color: #ccc;
+  
+}
+.disabled {
+   cursor: not-allowed;
+  opacity: 0.5;
+  text-decoration: none;
 }
 .pagination li i {
   font-size: 16px;

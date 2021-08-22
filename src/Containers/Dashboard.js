@@ -25,7 +25,16 @@ const Dashboard = () => {
   const [users, setUsers] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [showNewModal, setShowNewModal] = useState(false);
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const paginate = (e, pageNumber) => {
+    const numberOfPages = Math.ceil(count / pageSize);
+    if (currentPage <= 1) {
+      e.preventDefault();
+    } else if (currentPage >= numberOfPages) {
+      e.preventDefault();
+    } else {
+      setCurrentPage(pageNumber);
+    }
+  };
   const [activeUser, setActiveUser] = useState({});
 
   useEffect(() => {
@@ -37,6 +46,7 @@ const Dashboard = () => {
             data: { users, count },
           },
         } = await axios.get(url, config(state.token));
+        console.log('=====>', count);
         setCount(count);
         setUsers(users);
       } catch (error) {
@@ -153,12 +163,14 @@ const Dashboard = () => {
                           href="#"
                           title="member details"
                         >
-                          <img
-                            src={user.imageUrl}
-                            className="avatar"
-                            alt="Avatar"
-                            title="member image"
-                          />
+                          <span>
+                            <img
+                              src={user.imageUrl}
+                              className="avatar"
+                              alt="Avatar"
+                              title="member image"
+                            />
+                          </span>
                           {user.firstName} {user.lastName}
                         </a>
                       </td>
